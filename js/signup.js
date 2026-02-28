@@ -8,10 +8,10 @@ const eyeToggle     = document.getElementById('eyeToggle');
 const remember      = document.getElementById('remember');
 const googleBtn     = document.getElementById('googleBtn');
 const emailError    = document.getElementById('emailError');
-const ConfirmEyeToggle    = document.getElementById('confirmEyeToggle');
+const confirmEyeToggle    = document.getElementById('confirmEyeToggle');
 const passwordError = document.getElementById('passwordError');
-const ConfirmPasswordError = document.getElementById('confirmPasswordError');
-const ConfirmpassInput     = document.getElementById('confirmPassword');
+const confirmPasswordError = document.getElementById('confirmPasswordError');
+const confirmpassInput     = document.getElementById('confirmPassword');
 
 // Check if email is valid by using regex
 function isEmailValid(email) {
@@ -32,6 +32,11 @@ function showFieldError(field, message) {
     passwordError.classList.add('show');
     passInput.classList.add('error');
   }
+  if (field === 'confirmPassword') {
+    confirmPasswordError.textContent = message;
+    confirmPasswordError.classList.add('show');
+    confirmpassInput.classList.add('error');
+  }
 }
 
 
@@ -47,17 +52,23 @@ function hideFieldError(field) {
     passwordError.textContent = '';
     passInput.classList.remove('error');
   }
+  if (field === 'confirmPassword') {
+    confirmPasswordError.classList.remove('show');
+    confirmPasswordError.textContent = '';
+    confirmpassInput.classList.remove('error');
+  }
 }
 
 function hideAllErrors() {
   hideFieldError('email');
   hideFieldError('password');
+  hideFieldError('confirmPassword');
 }
 
 
 // Shows error under the right field
 // Returns true if everything is valid
-function validate(email, password) {
+function validate(email, password, confirmPassword) {
   let valid = true;
 
   if (!email) {
@@ -76,6 +87,11 @@ function validate(email, password) {
     valid = false;
   }
 
+  if (confirmPassword !== password) {
+    showFieldError('confirmPassword', 'password does not match.');
+    valid = false;
+  }
+
   return valid; 
 }
 
@@ -91,9 +107,9 @@ eyeToggle.addEventListener('click', () => {
 });
 
 confirmEyeToggle.addEventListener('click', () => {
-  const isHidden = ConfirmpassInput.type === 'password';
-  ConfirmpassInput.type  = isHidden ? 'text' : 'password';
-  ConfirmEyeToggle.classList.toggle('visible', isHidden);
+  const isHidden = confirmpassInput.type === 'password';
+  confirmpassInput.type  = isHidden ? 'text' : 'password';
+  confirmEyeToggle.classList.toggle('visible', isHidden);
 });
 
 //Clear email error as user types in email field
@@ -115,8 +131,9 @@ loginForm.addEventListener('submit', async (e) => {
 
   const email    = emailInput.value.trim();
   const password = passInput.value;
+  const confirmPassword = confirmpassInput.value;
 
-  const isValid = validate(email, password);
+  const isValid = validate(email, password, confirmPassword);
   if (!isValid) return;
 
 });
