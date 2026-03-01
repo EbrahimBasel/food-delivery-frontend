@@ -17,20 +17,39 @@
       </div>
     </nav>
     <main class="main">
-      <div class="login-main">
+      <div class="signup-main">
         <h1 class="page-title">Sign Up</h1>
 
-        <!-- Name field -->
-        <form id="loginForm" novalidate>
-          <div class="field-group">
-            <input
+        <form id="signupForm" novalidate>
+
+          <!-- Name field -->
+          <div class="field-group name-row">
+
+            <!-- first name -->         
+            <div class="name">
+              <input
               type="text"
-              id="name"
+              id="firstName"
               class="input-field"
-              placeholder="Enter name"
-              autocomplete="name"
+              placeholder="First Name"
+              autocomplete="firstName"
               required
             />
+            <p class="field-error" id="firstNameError"></p>
+            </div>
+
+            <!-- last name -->
+            <div class="name">
+              <input
+              type="text"
+              id="lastName"
+              class="input-field"
+              placeholder="Last Name"
+              autocomplete="lastName"
+              required
+            />
+            <p class="field-error" id="lastNameError"></p>
+            </div>
           </div>
 
           <!-- Email field -->

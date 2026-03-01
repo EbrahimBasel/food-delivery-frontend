@@ -1,17 +1,22 @@
-const loginForm     = document.getElementById('loginForm');
-const emailInput    = document.getElementById('email');
-const passInput     = document.getElementById('password');
+const signupForm     = document.getElementById('signupForm');
 const continueBtn   = document.getElementById('continueBtn');
 const btnLabel      = document.getElementById('btnLabel');
 const btnSpinner    = document.getElementById('btnSpinner');
-const eyeToggle     = document.getElementById('eyeToggle');
 const remember      = document.getElementById('remember');
 const googleBtn     = document.getElementById('googleBtn');
+const emailInput    = document.getElementById('email');
 const emailError    = document.getElementById('emailError');
-const confirmEyeToggle    = document.getElementById('confirmEyeToggle');
+const passInput     = document.getElementById('password');
 const passwordError = document.getElementById('passwordError');
 const confirmPasswordError = document.getElementById('confirmPasswordError');
 const confirmpassInput     = document.getElementById('confirmPassword');
+const eyeToggle     = document.getElementById('eyeToggle');
+const confirmEyeToggle    = document.getElementById('confirmEyeToggle');
+const firstNameInput = document.getElementById('firstName')
+const lastNameInput = document.getElementById('lastName')
+const firstNameError = document.getElementById('firstNameError')
+const lastNameError = document.getElementById('lastNameError')
+
 
 // Check if email is valid by using regex
 function isEmailValid(email) {
@@ -22,6 +27,16 @@ function isEmailValid(email) {
 
 // Show error under a specific field
 function showFieldError(field, message) {
+  if (field === 'firstName') {
+    firstNameError.textContent = message;
+    firstNameError.classList.add('show');
+    firstNameInput.classList.add('error');
+  }
+  if (field === 'lastName') {
+    lastNameError.textContent = message;
+    lastNameError.classList.add('show');
+    lastNameInput.classList.add('error');
+  }
   if (field === 'email') {
     emailError.textContent = message;
     emailError.classList.add('show');
@@ -42,6 +57,16 @@ function showFieldError(field, message) {
 
 //  Hide error under a specific field
 function hideFieldError(field) {
+  if (field === 'firstName') {
+    firstNameError.classList.remove('show');
+    firstNameError.textContent = '';
+    firstNameInput.classList.remove('error');
+  }
+  if (field === 'lastName') {
+    lastNameError.classList.remove('show');
+    lastNameError.textContent = '';
+    lastNameInput.classList.remove('error');
+  }
   if (field === 'email') {
     emailError.classList.remove('show');
     emailError.textContent = '';
@@ -63,13 +88,25 @@ function hideAllErrors() {
   hideFieldError('email');
   hideFieldError('password');
   hideFieldError('confirmPassword');
+  hideFieldError('firstName');
+  hideFieldError('lastName');
 }
 
 
 // Shows error under the right field
 // Returns true if everything is valid
-function validate(email, password, confirmPassword) {
+function validate(email, password, confirmPassword, firstName, lastName) {
   let valid = true;
+
+  if (!firstName) {
+    showFieldError('firstName', 'First name is required.');
+    valid = false;
+  }
+
+   if (!lastName) {
+    showFieldError('lastName', 'Last name is required.');
+    valid = false;
+  }
 
   if (!email) {
     showFieldError('email', 'Please enter your email address.');
@@ -123,17 +160,19 @@ passInput.addEventListener('input', () => {
   hideFieldError('password');
 });
 
-loginForm.addEventListener('submit', async (e) => {
+signupForm.addEventListener('submit', async (e) => {
 
   e.preventDefault();
 
   hideAllErrors();
 
+  const firstName = firstNameInput.value;
+  const lastName = lastNameInput.value;
   const email    = emailInput.value.trim();
   const password = passInput.value;
   const confirmPassword = confirmpassInput.value;
 
-  const isValid = validate(email, password, confirmPassword);
+  const isValid = validate(email, password, confirmPassword, firstName, lastName);
   if (!isValid) return;
 
 });

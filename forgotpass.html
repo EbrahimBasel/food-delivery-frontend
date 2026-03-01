@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hot Meal</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Patua+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/forgotpass.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-logo">
+        <img src="images/HOTMEAL-23 - 1.svg" alt="App Logo" class="logo-img" />
+      </div>
+    </nav>
+    <main class="main">
+      <div class="signup-main">
+        <h1 class="page-title">Forgot Password</h1>
+
+        <form id="signupForm" novalidate>
+
+          <!-- Email field -->
+          <div class="field-group">
+            <input
+              type="email"
+              id="email"
+              class="input-field"
+              placeholder="Your e-mail address"
+              autocomplete="email"
+              required
+            />
+            <p class="field-error" id="emailError"></p>
+          </div>
+
+          <!-- reset password -->
+          <button type="submit" class="btn-continue" id="continueBtn">
+            <span class="btn-label" id="btnLabel">Reset my Password</span>
+            <span class="btn-spinner" id="btnSpinner"></span>
+          </button>
+        </form>
+      </div>
+    </main>
+    <script src="#"></script>
+  </body>
+</html>
