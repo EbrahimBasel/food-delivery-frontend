@@ -48,10 +48,16 @@ body {
   padding: 40px 24px;
 }
 
-/* The centered login card */
-.login-main {
+/* The centered reset card */
+.forgotPass-main {
+  border: 1px solid #9a4d4d;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
+  border-radius: 20px;
+  padding: 40px;
+  height: 500px;
+  margin: 60px auto;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08)
 }
 
 /* TITLE */
@@ -72,6 +78,7 @@ body {
 
 /* Base input style */
 .input-field {
+  margin-top: 70px;
   width: 100%;
   padding: 17px 24px;
   background: var(--white);
@@ -104,7 +111,7 @@ body {
   margin-top: 20px;
 }
 
-/* CONTINUE BUTTON */
+/* RESET BUTTON */
 .btn-continue {
   width: 100%;
   padding: 17px;
